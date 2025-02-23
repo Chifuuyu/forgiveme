@@ -1,4 +1,3 @@
-import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
 
 interface Suggestion {
@@ -162,7 +161,7 @@ export default function Forgiveness() {
   async function grabData(searchTerm = "forgive me") {
     const apikey = "AIzaSyBWWo7AYx5FBmtunnDFAYt2ZHoNOUI2GUQ";
     const clientkey = "my_test_app";
-    const limit = 8;
+    const limit = 15;
     const url = `https://tenor.googleapis.com/v2/search?q=${encodeURIComponent(
       searchTerm
     )}&key=${apikey}&client_key=${clientkey}&limit=${limit}`;
@@ -170,8 +169,21 @@ export default function Forgiveness() {
       const res = await fetch(url);
       const data = await res.json();
       if (data.results && data.results.length > 0) {
-        const randomIndex = Math.floor(Math.random() * data.results.length);
-        setGifUrl(data.results[randomIndex].media_formats.gif.url);
+        let randomIndex = Math.floor(Math.random() * data.results.length);
+        let newGifUrl = data.results[randomIndex].media_formats.gif.url;
+        
+        // If there's more than one option, ensure the new GIF isn't the same as the current one.
+        if (data.results.length > 1) {
+          let attempts = 0;
+          // Use a loop to try to get a different GIF (avoid infinite loop with attempts limit)
+          while (newGifUrl === gifUrl && attempts < 10) {
+            randomIndex = Math.floor(Math.random() * data.results.length);
+            newGifUrl = data.results[randomIndex].media_formats.gif.url;
+            attempts++;
+          }
+        }
+        
+        setGifUrl(newGifUrl);
       }
     } catch (error) {
       console.error("Error fetching GIF:", error);
