@@ -159,7 +159,7 @@ export default function Forgiveness() {
   }, []);
 
   // Fetch a GIF from Tenor API.
-  async function grabData(searchTerm = "sorry") {
+  async function grabData(searchTerm = "forgive me") {
     const apikey = "AIzaSyBWWo7AYx5FBmtunnDFAYt2ZHoNOUI2GUQ";
     const clientkey = "my_test_app";
     const limit = 8;
@@ -180,7 +180,7 @@ export default function Forgiveness() {
 
   // Load an initial GIF.
   useEffect(() => {
-    grabData("sorry");
+    grabData("forgive me");
   }, []);
 
   function handleYes() {
@@ -201,7 +201,7 @@ export default function Forgiveness() {
       setGifUrl("/depressed.gif");
       setNoButtonDisabled(true);
     } else {
-      grabData("sorry");
+      grabData("forgive me");
     }
   }
 
