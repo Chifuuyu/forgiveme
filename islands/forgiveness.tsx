@@ -52,7 +52,7 @@ export default function Forgiveness() {
   }, []);
 
   // Fetch a GIF from Tenor API
-  async function grabData(searchTerm = "sorry") {
+  async function grabData(searchTerm = "please forgive me") {
     const apikey = "AIzaSyBWWo7AYx5FBmtunnDFAYt2ZHoNOUI2GUQ";
     const clientkey = "my_test_app";
     const limit = 8;
@@ -73,7 +73,7 @@ export default function Forgiveness() {
 
   // Load an initial GIF
   useEffect(() => {
-    grabData("sorry");
+    grabData("please forgive me");
   }, []);
 
   function handleYes() {
@@ -85,7 +85,7 @@ export default function Forgiveness() {
   }
 
   function handleNo() {
-    grabData("sorry");
+    grabData("please forgive me");
   }
 
   function handleSelectCategory(category: string) {
