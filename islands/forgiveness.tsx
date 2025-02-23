@@ -298,22 +298,27 @@ export default function Forgiveness() {
       {showSuggestions && (
         <div class="suggestion-section mt-4">
           {!selectedCategory && (
-            <div class="suggestion-container flex flex-wrap justify-center gap-4">
-              {suggestionsData.map((s) => (
-                <div
-                  key={s.name}
-                  class="suggestion-item w-36 cursor-pointer"
-                  onClick={() => handleSelectCategory(s.name)}
-                >
-                  <img
-                    src={s.img}
-                    alt={s.name}
-                    class="w-36 h-36 rounded-lg object-cover"
-                  />
-                  <p class="mt-2 text-lg font-bold">{s.name}</p>
-                </div>
-              ))}
-            </div>
+            <>
+              <h2 class="text-xl font-bold mb-4">
+                A Token of Apology: Please Choose an Option Below
+              </h2>
+              <div class="suggestion-container flex flex-wrap justify-center gap-4">
+                {suggestionsData.map((s) => (
+                  <div
+                    key={s.name}
+                    class="suggestion-item w-36 cursor-pointer"
+                    onClick={() => handleSelectCategory(s.name)}
+                  >
+                    <img
+                      src={s.img}
+                      alt={s.name}
+                      class="w-36 h-36 rounded-lg object-cover"
+                    />
+                    <p class="mt-2 text-lg font-bold">{s.name}</p>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
           {selectedCategory && (
             <div class="mt-4">
