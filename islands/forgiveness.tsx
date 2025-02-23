@@ -11,8 +11,7 @@ const suggestionsData: Suggestion[] = [
   { name: "Drink", img: "/drink.jpg" },
   { name: "Dress", img: "/dress.jpg" },
   { name: "Travel", img: "/travel.jpg" },
-  { name: "Entertainment", img: "/fun.jpg" },
-  { name: "Technology", img: "/technology.jpg" },
+  { name: "Entertainment", img: "/fun.jpg" }
 ];
 
 const sorryMessages: string[] = [
