@@ -157,35 +157,46 @@ export default function Forgiveness() {
     }
   }, []);
 
-export default function GifComponent() {
-  const [gifUrl, setGifUrl] = useState("");
-
-  // Fetch data from the server API endpoint
-  async function grabData(searchTerm = "I apologize") {
-    try {
-      const res = await fetch(`/api/gif?q=${encodeURIComponent(searchTerm)}`);
-      const data = await res.json();
-      // Update the state with the new GIF URL
-      setGifUrl(data.newGifUrl);
-    } catch (error) {
-      console.error("Error fetching GIF:", error);
-    }
+  // Fetch a GIF from Tenor API.
+async function grabData(searchTerm = "I apologize") {
+  try {
+    const res = await fetch(`/api/gif?q=${encodeURIComponent(searchTerm)}`);
+    const data = await res.json();
+    // Assume your server returns the GIF URL directly in data.newGifUrl, etc.
+    setGifUrl(data.newGifUrl);
+  } catch (error) {
+    console.error("Error fetching GIF:", error);
   }
+}
 
-  // Load an initial GIF when the component mounts
+  // Load an initial GIF.
   useEffect(() => {
-    grabData();
+    grabData("I apologize");
   }, []);
 
-  // Event handlers for buttons
   function handleYes() {
-    // For example, fetch a different search term when "Yes" is clicked
+    setFlashActive(true);
+    setTimeout(() => setFlashActive(false), 500);
+    setShowButtons(false);
+    setShowSuggestions(true);
     grabData("thank you you are the best");
   }
 
   function handleNo() {
-    // Fetch another GIF based on the "No" response
-    grabData("I apologize");
+    if (noButtonDisabled) return;
+    const newCount = sorryCount + 1;
+    setSorryCount(newCount);
+    const msg = newCount <= 100 ? sorryMessages[newCount - 1] : sorryMessages[99];
+    setSorryMessage(msg);
+    if (newCount >= 100) {
+      setGifUrl("/depressed.gif");
+      setNoButtonDisabled(true);
+    } else if (newCount % 5 === 0 && newCount % 10 !== 0) {
+      // For every multiple of 5 (but not multiple of 10), show a "you are pretty (cat)" GIF.
+      grabData("you are pretty cat");
+    } else {
+      grabData("I apologize");
+    }
   }
 
   function handleSelectCategory(category: string) {
