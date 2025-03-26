@@ -158,36 +158,16 @@ export default function Forgiveness() {
   }, []);
 
   // Fetch a GIF from Tenor API.
-  async function grabData(searchTerm = "I apologize") {
-    const apikey = Deno.env.get("GIF");
-    const clientkey = "my_test_app";
-    const limit = 15;
-    const url = `https://tenor.googleapis.com/v2/search?q=${encodeURIComponent(
-      searchTerm
-    )}&key=${apikey}&client_key=${clientkey}&limit=${limit}`;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data.results && data.results.length > 0) {
-        let randomIndex = Math.floor(Math.random() * data.results.length);
-        let newGifUrl = data.results[randomIndex].media_formats.gif.url;
-        
-        // Ensure the new GIF isn't the same as the current one if possible.
-        if (data.results.length > 1) {
-          let attempts = 0;
-          while (newGifUrl === gifUrl && attempts < 10) {
-            randomIndex = Math.floor(Math.random() * data.results.length);
-            newGifUrl = data.results[randomIndex].media_formats.gif.url;
-            attempts++;
-          }
-        }
-        
-        setGifUrl(newGifUrl);
-      }
-    } catch (error) {
-      console.error("Error fetching GIF:", error);
-    }
+async function grabData(searchTerm = "I apologize") {
+  try {
+    const res = await fetch(`/api/gif?q=${encodeURIComponent(searchTerm)}`);
+    const data = await res.json();
+    // Assume your server returns the GIF URL directly in data.newGifUrl, etc.
+    setGifUrl(data.newGifUrl);
+  } catch (error) {
+    console.error("Error fetching GIF:", error);
   }
+}
 
   // Load an initial GIF.
   useEffect(() => {
