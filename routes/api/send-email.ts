@@ -3,9 +3,9 @@ import { Handler } from "$fresh/server.ts";
 
 const MAILJET_API_KEY = "85336985c35afac1eac311109432ff7a";
 const MAILJET_API_SECRET = "d02718bb8934b4d90560beb5c34d4e9d";
-const MAILJET_FROM_EMAIL = "paulragsac@gmail.com";
+const MAILJET_FROM_EMAIL = $MY_EMAIL;
 const MAILJET_FROM_NAME = "Forgiveness App";
-const MAILJET_TO_EMAIL = "paulragsac@gmail.com";
+const MAILJET_TO_EMAIL = $MY_EMAIL;
 const MAILJET_TO_NAME = "Paul";
 
 export const handler = {
