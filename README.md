@@ -5,4 +5,4 @@ This project was created in order for my girlfriend to forgive me since she aske
 
 deployed in deno deploy
 
-link to site: https://dash.deno.com/projects/paulanthony-forgiveme-47
+link to site: forgiveme-app.deno.dev
