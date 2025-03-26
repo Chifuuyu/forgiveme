@@ -1,11 +1,11 @@
 // routes/api/send-email.ts
 import { Handler } from "$fresh/server.ts";
 
-const MAILJET_API_KEY = "85336985c35afac1eac311109432ff7a";
-const MAILJET_API_SECRET = "d02718bb8934b4d90560beb5c34d4e9d";
-const MAILJET_FROM_EMAIL = $MY_EMAIL;
+const MAILJET_API_KEY = Deno.env.get("MAILJET_API");
+const MAILJET_API_SECRET = Deno.env.get("MAILJET_SECRET");
+const MAILJET_FROM_EMAIL = Deno.env.get("MY_EMAIL");
 const MAILJET_FROM_NAME = "Forgiveness App";
-const MAILJET_TO_EMAIL = $MY_EMAIL;
+const MAILJET_TO_EMAIL = Deno.env.get("MY_EMAIL");
 const MAILJET_TO_NAME = "Paul";
 
 export const handler = {
