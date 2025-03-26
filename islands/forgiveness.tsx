@@ -157,8 +157,6 @@ export default function Forgiveness() {
     }
   }, []);
 
-import { useEffect, useState } from "react";
-
 export default function GifComponent() {
   const [gifUrl, setGifUrl] = useState("");
 
