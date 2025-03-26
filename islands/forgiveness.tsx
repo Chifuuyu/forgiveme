@@ -159,7 +159,7 @@ export default function Forgiveness() {
 
   // Fetch a GIF from Tenor API.
   async function grabData(searchTerm = "I apologize") {
-    const apikey = "AIzaSyBWWo7AYx5FBmtunnDFAYt2ZHoNOUI2GUQ";
+    const apikey = Deno.env.get("GIF");
     const clientkey = "my_test_app";
     const limit = 15;
     const url = `https://tenor.googleapis.com/v2/search?q=${encodeURIComponent(
